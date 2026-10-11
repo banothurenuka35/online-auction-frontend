@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import "./App.css";
 
@@ -752,11 +751,12 @@ function App() {
                   const isHouse =
                     String(product.category).toUpperCase() === "HOUSE";
 
+                  // Images placed inside the frontend's public folder are served
+                  // from the site root, e.g. public/house1.jpg -> /house1.jpg.
                   const imageUrl = product.imageUrl
-                    ? product.imageUrl.startsWith("http") ||
-                      product.imageUrl.startsWith("/")
+                    ? /^https?:\/\//i.test(product.imageUrl)
                       ? product.imageUrl
-                      : `/${product.imageUrl}`
+                      : `/${product.imageUrl.replace(/^\/+/, "")}`
                     : "";
 
                   return (
@@ -768,6 +768,13 @@ function App() {
                             alt={product.name}
                             onError={(event) => {
                               event.currentTarget.style.display = "none";
+                              const fallback = event.currentTarget.parentElement;
+                              if (fallback && !fallback.querySelector(".image-fallback")) {
+                                const icon = document.createElement("span");
+                                icon.className = "image-fallback";
+                                icon.textContent = isHouse ? "🏠" : "📱";
+                                fallback.appendChild(icon);
+                              }
                             }}
                           />
                         ) : (

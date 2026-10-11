@@ -1,0 +1,408 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.header {
+  background: #172554;
+  color: white;
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.header h1 {
+  color: white;
+  font-size: 25px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+button {
+  background: #f59e0b;
+  color: #111;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #d97706;
+  color: white;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.hero {
+  background: linear-gradient(135deg, #2563eb, #172554);
+  color: white;
+  text-align: center;
+  padding: 90px 20px;
+}
+
+.hero h2 {
+  color: white;
+  font-size: 50px;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.login {
+  max-width: 550px;
+  margin: 35px auto;
+  padding: 30px;
+  text-align: center;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.login h2 {
+  margin-bottom: 22px;
+  color: #172554;
+}
+
+.login input {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 16px;
+}
+
+.login button {
+  width: 100%;
+}
+
+.login p {
+  margin-top: 15px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.section {
+  padding: 50px 7%;
+  text-align: center;
+}
+
+.section h2 {
+  color: #172554;
+  font-size: 30px;
+  margin-bottom: 25px;
+}
+
+.section > p {
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+#home,
+#products,
+#notifications,
+#seller-dashboard,
+#auction-details {
+  scroll-margin-top: 20px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 25px;
+}
+
+.card {
+  min-width: 0;
+  padding: 25px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.09);
+  overflow-wrap: anywhere;
+}
+
+.card .image {
+  width: 100%;
+  height: 220px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #eef2ff;
+  font-size: 70px;
+}
+
+.card .image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card h3 {
+  color: #172554;
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.card p {
+  color: #4b5563;
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.card button {
+  margin-top: 12px;
+}
+
+.seller-dashboard {
+  margin: 30px 7%;
+  padding: 40px 5%;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.seller-dashboard h2 {
+  margin-bottom: 15px;
+}
+
+.seller-dashboard h3 {
+  color: #1e40af;
+  font-size: 22px;
+  margin: 30px 0 15px;
+}
+
+.demo-button {
+  margin: 25px auto;
+}
+
+.demo-button button {
+  background: #16a34a;
+  color: white;
+}
+
+.demo-button button:hover {
+  background: #15803d;
+}
+
+.seller-form {
+  width: 100%;
+  max-width: 650px;
+  margin: 20px auto 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+.seller-form input,
+.seller-form textarea,
+.seller-form select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: white;
+  color: #222;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.seller-form input:focus,
+.seller-form textarea:focus,
+.seller-form select:focus {
+  outline: 2px solid #93c5fd;
+  border-color: #2563eb;
+}
+
+.seller-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.seller-form label {
+  font-weight: bold;
+  color: #334155;
+}
+
+.seller-form button {
+  width: 100%;
+}
+
+.message {
+  overflow-wrap: anywhere;
+}
+
+.auction-details {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.09);
+}
+
+.auction-details h2 {
+  color: #172554;
+  overflow-wrap: anywhere;
+}
+
+.auction-details p {
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 8px 0;
+}
+
+.auction-details input {
+  width: min(100%, 300px);
+  padding: 12px;
+  margin: 15px 8px 15px 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#notifications > button {
+  margin-bottom: 15px;
+}
+
+#notifications .card h3 {
+  font-size: 19px;
+}
+
+#notifications .card p {
+  font-size: 16px;
+}
+
+footer {
+  background: #172554;
+  color: white;
+  text-align: center;
+  padding: 22px 15px;
+  margin-top: 30px;
+}
+
+footer p {
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .hero h2 {
+    font-size: 40px;
+  }
+
+  .section {
+    padding: 40px 5%;
+  }
+
+  .cards {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 22px;
+  }
+
+  nav {
+    gap: 12px;
+  }
+
+  .hero {
+    padding: 65px 18px;
+  }
+
+  .hero h2 {
+    font-size: 34px;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .section h2 {
+    font-size: 25px;
+  }
+
+  .seller-dashboard {
+    margin: 20px 4%;
+    padding: 28px 18px;
+  }
+
+  .login {
+    margin: 25px 15px;
+    padding: 25px 18px;
+  }
+
+  .auction-details input {
+    display: block;
+    width: 100%;
+    margin: 15px 0;
+  }
+}

@@ -5,6 +5,8 @@ const API = "https://online-auction-backend-production.up.railway.app/api";
 const BUYER_ID = 1;
 
 function App() {
+  const [isRegister, setIsRegister] = useState(false);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
@@ -72,6 +74,49 @@ function App() {
       }
     } catch (error) {
       console.error("Notifications could not be loaded:", error);
+    }
+  };
+
+  const register = async () => {
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const response = await fetch(`${API}/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          password
+        })
+      });
+
+      const text = await response.text();
+      let result = {};
+      try {
+        result = text ? JSON.parse(text) : {};
+      } catch {
+        result = { message: text };
+      }
+
+      if (!response.ok) {
+        setMessage(
+          result.error || result.message ||
+          "Registration failed. Please check your details."
+        );
+        return;
+      }
+
+      setIsRegister(false);
+      setName("");
+      setPassword("");
+      setMessage("Registration successful! Please log in.");
+    } catch (error) {
+      console.error(error);
+      setMessage("Unable to connect to the registration service.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -535,16 +580,29 @@ function App() {
 
       {!token && (
         <section className="login" id="login">
-          <h2>🔐 Login</h2>
+          <h2>{isRegister ? "📝 Create Account" : "🔐 Login"}</h2>
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              login();
+              if (isRegister) register();
+              else login();
             }}
           >
+            {isRegister && (
+              <input
+                type="text"
+                required
+                minLength="2"
+                maxLength="80"
+                placeholder="Full name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            )}
             <input
               type="email"
               required
+              maxLength="254"
               placeholder="Email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
@@ -552,14 +610,29 @@ function App() {
             <input
               type="password"
               required
-              placeholder="Password"
+              minLength={isRegister ? 8 : 1}
+              maxLength="72"
+              placeholder={isRegister ? "Password (at least 8 characters)" : "Password"}
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
             <button type="submit" disabled={loading}>
-              {loading ? "Please wait..." : "Login"}
+              {loading ? "Please wait..." : isRegister ? "Register" : "Login"}
             </button>
           </form>
+          <p>
+            {isRegister ? "Already have an account?" : "New to Online Auction?"}{" "}
+            <button
+              type="button"
+              onClick={() => {
+                setIsRegister(!isRegister);
+                setMessage("");
+              }}
+              disabled={loading}
+            >
+              {isRegister ? "Login here" : "Create an account"}
+            </button>
+          </p>
           <p className="message">{message}</p>
         </section>
       )}
